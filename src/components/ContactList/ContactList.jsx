@@ -1,17 +1,15 @@
+import { selectContacts } from 'redux/contactsSlice';
 import { ContactListItem } from './ContactListItem';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
-export const ContactList = ({ contacts, deleteContact }) => {
+export const ContactList = () => {
+  const contacts = useSelector(selectContacts);
+
   return (
     <ul>
       {contacts.map(({ id, name, number }) => (
-        <ContactListItem
-          key={id}
-          name={name}
-          number={number}
-          id={id}
-          onDelete={deleteContact}
-        />
+        <ContactListItem key={id} name={name} number={number} id={id} />
       ))}
     </ul>
   );
