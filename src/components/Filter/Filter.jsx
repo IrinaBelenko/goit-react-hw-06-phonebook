@@ -1,4 +1,14 @@
-export const Filter = ({ filter, onFilter }) => {
+import { useDispatch, useSelector } from 'react-redux';
+import { selectFilter, setFilter } from 'redux/contactsSlice';
+
+export const Filter = () => {
+  const filter = useSelector(selectFilter);
+  const dispatch = useDispatch();
+
+  const onFilter = ({ target }) => {
+    dispatch(setFilter(target.value.toLowerCase()));
+  };
+
   return (
     <label>
       Find contacts by name
